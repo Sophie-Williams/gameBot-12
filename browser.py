@@ -10,6 +10,7 @@ def main():
 	Username = "AuuxL"
 	Password = "appleman"
 	login(Username, Password)
+	homepage();
 
 def findButton(name,driver):
 
@@ -20,10 +21,19 @@ def findButton(name,driver):
 			button.click()
 
 
-def findBattle(username, driver):
+def findRandomBattle(username, driver):
 	time.sleep(2)
 	driver.find_element_by_name('search').click()
 	print("Battle started")
+	time.sleep(2)
+	driver.find_element_by_name('chooseMove').click()
+
+
+def gotoLobby(driver):
+	time.sleep(2)
+	driver.find_element_by_name('').click()
+
+def loadTeam():
 
 
 def login(Username, Password):
@@ -47,8 +57,17 @@ def login(Username, Password):
 	findButton("Choose name", driver);
 
 	time.sleep(2)
+	text = 0
+	while text != 1 or text != 2:
+		print("Do you want to random battle (1) or go to the lobby (2) ?")
+		text = int(raw_input("Enter your answer: "))
+		sleep(1)
 
-	findBattle("Shaun", driver);
+		if text == 1:
+			findRandomBattle("Shaun", driver);
+		elif text == 2:
+			gotoLobby(driver)
+
 
 	selenium.stop
 
